@@ -3,10 +3,11 @@
     public class SaveToFile
     {
         private IEnumerable<IInfo> info;
-        public SaveToFile(IEnumerable<IInfo> info)
+        public SaveToFile(IEnumerable<IInfo> info, string nameFile)
         {
             this.info = info;
-            using FileStream fs = new FileStream("../../../App_Data/data.txt", FileMode.Append);
+
+            using FileStream fs = new FileStream($"../../../App_Data/{nameFile}.txt", FileMode.Append);
             using StreamWriter sw = new StreamWriter(fs);
 
             foreach (var item in info)

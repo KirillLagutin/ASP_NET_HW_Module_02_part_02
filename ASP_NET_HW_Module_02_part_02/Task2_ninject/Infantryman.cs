@@ -1,4 +1,4 @@
-﻿namespace ASP_NET_HW_Module_02_part_02.Task2
+﻿namespace ASP_NET_HW_Module_02_part_02.Task2_ninject
 {
     public class Infantryman : IInfo
     {

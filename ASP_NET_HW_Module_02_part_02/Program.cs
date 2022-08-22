@@ -1,36 +1,26 @@
-﻿using ASP_NET_HW_Module_02_part_02;
-using ASP_NET_HW_Module_02_part_02.Task1;
-using ASP_NET_HW_Module_02_part_02.Task2;
-using Ninject;
+﻿using Ninject;
+using Autofac;
+using ASP_NET_HW_Module_02_part_02;
+using ASP_NET_HW_Module_02_part_02.Task1_ninject;
+using ASP_NET_HW_Module_02_part_02.Task2_ninject;
+using ASP_NET_HW_Module_02_part_02.Task3_autofac;
+using ASP_NET_HW_Module_02_part_02.Task4_autofac;
 
 /*Задание 1
-    Создайте приложение, которое выводит информа-
-цию о коктейлях. Информация может быть сокращенная 
+    Создайте приложение, которое выводит информацию 
+о коктейлях. Информация может быть сокращенная 
 и полная. Предусмотрите отображение, как на экран,
 так и в файл. Используйте при работе с этим проектом 
 Autofac или Ninject*/
 
-Console.WriteLine("Задание 1\n");
+Console.WriteLine("\n===================\n" + 
+                    "Задание 1 (ninject)\n" +
+                    "===================\n");
 
 IKernel kernel1 = new StandardKernel(new AllCoctailes());
-IEnumerable<IInfo> fullInfo1 = kernel1.GetAll<IInfo>();
+IEnumerable<IInfo> coctailes = kernel1.GetAll<IInfo>();
 
-foreach(var item in fullInfo1)
-{
-    Console.WriteLine(item.Info());
-}
-
-Console.WriteLine("Введите 's' чтобы записать в файл, или другую клавишу для отмены записи");
-string choice1 = Console.ReadLine();
-if (choice1 == "s")
-{
-    new SaveToFile(fullInfo1);
-    Console.WriteLine("Информация добавлена в файл");
-}
-else
-{
-    Console.WriteLine("Запись в файл отменена");
-}
+new ConsoleOutput(coctailes, "task1_ninject");
 
 
 
@@ -42,28 +32,14 @@ else
 на экран, так и в файл. Используйте при работе с этим 
 проектом Autofac или Ninject*/
 
-Console.WriteLine("\nЗадание 2\n");
+Console.WriteLine("\n===================\n" +
+                    "Задание 2 (ninject)\n" +
+                    "===================\n");
 
 IKernel kernel2 = new StandardKernel(new Characters());
-IEnumerable<IInfo> fullInfo2 = kernel2.GetAll<IInfo>();
+IEnumerable<IInfo> characters = kernel2.GetAll<IInfo>();
 
-foreach(var item in fullInfo2)
-{
-    Console.WriteLine(item.Info());
-}
-
-Console.WriteLine("Введите 's' чтобы записать в файл, или другую клавишу для отмены записи");
-string choice2 = Console.ReadLine();
-if (choice2 == "s")
-{
-    new SaveToFile(fullInfo2);
-    Console.WriteLine("Информация добавлена в файл");
-}
-else
-{
-    Console.WriteLine("Запись в файл отменена");
-}
-
+new ConsoleOutput(characters, "task2_ninject");
 
 
 /*Задание 3
@@ -73,12 +49,28 @@ else
 как на экран, так и в файл. Используйте при работе с 
 этим проектом Autofac или Ninject.*/
 
+Console.WriteLine("\n===================\n" +
+                    "Задание 3 (autofac)\n" +
+                    "===================\n");
+
+var builder = new ContainerBuilder();
+builder.RegisterType<Circle>().As<IInfo>();
+builder.RegisterType<Square>().As<IInfo>();
+var container = builder.Build();
+var figures = container.Resolve<IEnumerable<IInfo>>();
+
+new ConsoleOutput(figures, "task3_autofac");
 
 
 /*Задание 4
-    Создайте приложение, которое выводит информа-
-цию об устройствах. Например: кофемолка, миксер, 
+    Создайте приложение, которое выводит информацию 
+об устройствах. Например: кофемолка, миксер, 
 блендер и т.д. Информация может быть сокращенная 
 и полная. Предусмотрите отображение, как на экран, 
 так и в файл. Используйте при работе с этим проектом 
 Autofac или Ninject.*/
+
+/*Console.WriteLine("\n===================\n" +
+                      "Задание 4 (autofac)\n" +
+                      "===================\n");*/
+
