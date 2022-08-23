@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ASP_NET_HW_Module_02_part_02.Task4_autofac
+﻿namespace ASP_NET_HW_Module_02_part_02.Task4_autofac
 {
-    public class Mixer
+    public class Mixer : IKitchenAppliances
     {
-
+        public int Id { get; set; } = 2;
+        public string Name { get; set; } = "Миксер";
+        public string Action { get; set; } = "взбивает";
     }
 }

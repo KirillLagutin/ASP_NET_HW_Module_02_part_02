@@ -13,7 +13,7 @@ using ASP_NET_HW_Module_02_part_02.Task4_autofac;
 так и в файл. Используйте при работе с этим проектом 
 Autofac или Ninject*/
 
-Console.WriteLine("\n===================\n" + 
+Console.WriteLine("\n===================\n" +
                     "Задание 1 (ninject)\n" +
                     "===================\n");
 
@@ -56,7 +56,7 @@ Console.WriteLine("\n===================\n" +
 var builder = new ContainerBuilder();
 builder.RegisterType<Circle>().As<IInfo>();
 builder.RegisterType<Square>().As<IInfo>();
-var container = builder.Build();
+using var container = builder.Build();
 var figures = container.Resolve<IEnumerable<IInfo>>();
 
 new ConsoleOutput(figures, "task3_autofac");
@@ -70,7 +70,19 @@ new ConsoleOutput(figures, "task3_autofac");
 так и в файл. Используйте при работе с этим проектом 
 Autofac или Ninject.*/
 
-/*Console.WriteLine("\n===================\n" +
+Console.WriteLine("\n===================\n" +
                       "Задание 4 (autofac)\n" +
-                      "===================\n");*/
+                      "===================\n");
 
+var builder2 = new ContainerBuilder();
+builder2.RegisterType<CoffeeGrinder>().As<IKitchenAppliances>();
+builder2.RegisterType<Mixer>().As<IKitchenAppliances>();
+builder2.RegisterType<Blender>().As<IKitchenAppliances>();
+builder2.RegisterType<GetMethods>().As<IGetMethods>();
+builder2.RegisterType<InfoKitchenAppliances>();
+
+using var container2 = builder2.Build();
+
+var appliance = container2.Resolve<InfoKitchenAppliances>();
+
+appliance.ConsoleOutput();

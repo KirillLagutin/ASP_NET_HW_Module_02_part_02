@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ASP_NET_HW_Module_02_part_02
+﻿namespace ASP_NET_HW_Module_02_part_02
 {
     public class ConsoleOutput
     {
@@ -15,9 +9,9 @@ namespace ASP_NET_HW_Module_02_part_02
                 Console.WriteLine(item.Info());
             }
 
-            Console.WriteLine("-----------------------------------------------------------------------\n" +
-                "Введите 's' чтобы записать в файл, или другую клавишу для отмены записи\n" +
-                "-----------------------------------------------------------------------\n");
+            Console.WriteLine("------------------------------------------------------------------------\n" +
+                              "Введите 's' чтобы записать в файл, или другую клавишу для отмены записи:\n" +
+                              "------------------------------------------------------------------------\n");
 
             string choice = Console.ReadLine();
             if (choice == "s")
